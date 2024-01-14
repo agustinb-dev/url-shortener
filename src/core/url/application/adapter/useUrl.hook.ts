@@ -2,6 +2,7 @@ import { container } from "tsyringe";
 import { UrlCreate } from "../useCase/UrlCreate.ts";
 import { UrlGetOne } from "../useCase/UrlGetOne.ts";
 import { UrlGetOneByUrl } from "../useCase/UrlGetOneByUrl.ts";
+import { AxiosError } from "axios";
 export function useUrl() {
   // SERVICES
   const urlCreate = container.resolve(UrlCreate);
@@ -9,7 +10,16 @@ export function useUrl() {
   const urlGetOneByUrl = container.resolve(UrlGetOneByUrl);
 
   const createUrl = async (url: string) => {
-    await urlCreate.execute(url);
+    try {
+      await urlCreate.execute(url);
+    }
+    catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data);
+        return
+      }
+      console.log(error);
+    }
   }
 
   const getOneUrl = async (shortUrlKey: string) => {
@@ -17,7 +27,16 @@ export function useUrl() {
   }
 
   const getOneUrlByUrl = async (url: string) => {
-    return await urlGetOneByUrl.execute(url);
+    try {
+      return await urlGetOneByUrl.execute(url);
+    }
+    catch (error) {
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data);
+        return
+      }
+      console.log(error);
+    }
   }
 
   return {
