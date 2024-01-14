@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    // Tsyringe
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["vite.config.ts"]
+}
