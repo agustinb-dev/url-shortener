@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 
 export const UrlForm = () => {
 
+  // TODO: separate into smaller components and use hooks for logic.
+
     const [shortUrl, setShortUrl] = useState<string>();
 
     const { createUrl, getOneUrlByUrl, getOneUrl } = useUrl();
@@ -13,13 +15,14 @@ export const UrlForm = () => {
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
+      setShortUrl('');
       const formData = new FormData(event.currentTarget);
       const url = formData.get('url');
       url && await createUrl(url as string);
       if (url) {
-        const response: ShortUrl = await getOneUrlByUrl(url as string);
-        const resolvedShortUrl: ShortUrl = response.data
-        const userShortUrl = 'http://localhost:5173/'+resolvedShortUrl.shortUrlKey
+        const response: ShortUrl | undefined = await getOneUrlByUrl(url as string);
+        const resolvedShortUrl= response?.data
+        const userShortUrl = resolvedShortUrl && import.meta.env.VITE_DOMAIN_URL+resolvedShortUrl.shortUrlKey
         setShortUrl(userShortUrl);
       }
       return
@@ -28,8 +31,8 @@ export const UrlForm = () => {
     const redirect = () => {
       if (shortUrlKey !== undefined) {
         getOneUrl(shortUrlKey).then((response: ShortUrl) => {
-          const resolvedShortUrl: ShortUrl = response.data
-          window.location.href = resolvedShortUrl.url;
+          const resolvedShortUrl: ShortUrl | undefined = response.data
+          window.location.href = resolvedShortUrl?.url ?? import.meta.env.VITE_DOMAIN_URL;
         })
       }
     }
