@@ -1,43 +1,32 @@
-import { FormEvent, useState } from "react";
-import { useUrl } from "../../../../core/url/application/adapter/useUrl.hook.ts";
+import { Dispatch, FormEvent, SetStateAction } from "react";
 import { ShortUrl } from "../../../../core/url/domain/ShortUrl.ts";
-import { useParams } from "react-router-dom";
 
-export const UrlForm = () => {
+
+interface UrlFormProperties {
+  shortUrl: string | undefined,
+  setShortUrl: Dispatch<SetStateAction<string | undefined>>,
+  getOneUrlByUrl: (url: string) => Promise<ShortUrl | undefined>,
+  createUrl: (url: string) => Promise<void>,
+}
+
+export const UrlForm = (properties: UrlFormProperties) => {
 
   // TODO: separate into smaller components and use hooks for logic.
 
-    const [shortUrl, setShortUrl] = useState<string>();
-
-    const { createUrl, getOneUrlByUrl, getOneUrl } = useUrl();
-
-    const { shortUrlKey } = useParams()
-
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      setShortUrl('');
+      properties.setShortUrl('');
       const formData = new FormData(event.currentTarget);
       const url = formData.get('url');
-      url && await createUrl(url as string);
+      url && await properties.createUrl(url as string);
       if (url) {
-        const response: ShortUrl | undefined = await getOneUrlByUrl(url as string);
+        const response: ShortUrl | undefined = await properties.getOneUrlByUrl(url as string);
         const resolvedShortUrl= response?.data
         const userShortUrl = resolvedShortUrl && import.meta.env.VITE_DOMAIN_URL+resolvedShortUrl.shortUrlKey
-        setShortUrl(userShortUrl);
+        properties.setShortUrl(userShortUrl);
       }
       return
-    }
-
-    const redirect = () => {
-      if (shortUrlKey !== undefined) {
-        getOneUrl(shortUrlKey).then((response: ShortUrl) => {
-          const resolvedShortUrl: ShortUrl | undefined = response.data
-          window.location.href = resolvedShortUrl?.url ?? import.meta.env.VITE_DOMAIN_URL;
-        })
-      }
-    }
-
-    redirect();
+    };
 
     return (
         <>
@@ -46,12 +35,12 @@ export const UrlForm = () => {
             >
                 <label htmlFor="url">
                     URL:
-                    <input type="text" name="url" id="url"/>
                 </label>
+                    <input type="text" name="url" id="url"/>
                 <button type="submit" value="short it">short it</button>
             </form>
             <div>
-              {shortUrl && <h3><a href={shortUrl}>{shortUrl}</a></h3>}
+              {properties.shortUrl && <h3><a href={properties.shortUrl}>{properties.shortUrl}</a></h3>}
             </div>
         </>
     );
