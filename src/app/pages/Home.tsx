@@ -1,4 +1,4 @@
-import { HomePageView } from "../app/components";
+import { HomePageView } from "../components";
 
 export function Home() {
   return (
