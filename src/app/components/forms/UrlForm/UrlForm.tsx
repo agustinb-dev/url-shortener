@@ -1,6 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction } from "react";
 import { ShortUrl } from "../../../../core/url/domain/ShortUrl.ts";
-
+import styles from "./UrlForm.module.scss";
+import { Button, Input } from "../../atoms";
 
 interface UrlFormProperties {
   shortUrl: string | undefined,
@@ -10,9 +11,6 @@ interface UrlFormProperties {
 }
 
 export const UrlForm = (properties: UrlFormProperties) => {
-
-  // TODO: separate into smaller components and use hooks for logic.
-
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       properties.setShortUrl('');
@@ -29,19 +27,17 @@ export const UrlForm = (properties: UrlFormProperties) => {
     };
 
     return (
-        <>
+        <div className={styles['url-form-container']}>
             <form
                 onSubmit={handleSubmit}
+                className={styles['url-form']}
             >
-                <label htmlFor="url">
-                    URL:
-                </label>
-                    <input type="text" name="url" id="url"/>
-                <button type="submit" value="short it">short it</button>
+                <Input type="text" name="url" id="url" className={styles['url-form-input']} placeholder={'Shorten a link here...'}/>
+                <Button type="submit" value="Shorten It!" className={styles['url-form-button']}>Shorten It!</Button>
             </form>
             <div>
               {properties.shortUrl && <h3><a href={properties.shortUrl}>{properties.shortUrl}</a></h3>}
             </div>
-        </>
+        </div>
     );
 };

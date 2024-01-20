@@ -1,0 +1,5 @@
+@use "constants.scss";
+
+@function size($n) {
+    @return constants.$size-unit * $n;
+}

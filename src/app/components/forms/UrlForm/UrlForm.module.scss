@@ -1,0 +1,26 @@
+@use "../../../styles/constants.scss";
+@use "../../../styles/functions.scss";
+
+.url-form-container {
+  background-color: constants.$secondary-color;
+  padding: functions.size(5);
+  border-radius: constants.$border-radius;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+
+  .url-form {
+    display: flex;
+    column-gap: functions.size(1.5);
+    width: 100%;
+
+    .url-form-button {
+      padding: functions.size(1.7) functions.size(2.5);
+    }
+
+    .url-form-input {
+      padding: functions.size(1.5);
+      flex-grow: 1;
+    }
+  }
+}

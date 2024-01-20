@@ -1,5 +1,6 @@
 import { UrlForm } from "../../forms/UrlForm/UrlForm.tsx";
 import { useHomePageHooks } from "./HomePage.hook.tsx";
+import styles from "./HomePage.module.scss";
 
 export function HomePageView() {
   const {
@@ -13,11 +14,13 @@ export function HomePageView() {
   redirect()
 
   return (
-    <UrlForm
-      shortUrl={shortUrl}
-      setShortUrl={setShortUrl}
-      getOneUrlByUrl={getOneUrlByUrl}
-      createUrl={createUrl}
-    />
+    <div className={styles.home_page}>
+      <UrlForm
+        shortUrl={shortUrl}
+        setShortUrl={setShortUrl}
+        getOneUrlByUrl={getOneUrlByUrl}
+        createUrl={createUrl}
+      />
+    </div>
   )
 }

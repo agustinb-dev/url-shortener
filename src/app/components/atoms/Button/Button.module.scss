@@ -1,0 +1,28 @@
+@use "../../../styles/constants.scss";
+@use "../../../styles/functions.scss";
+
+.button-normal {
+  border-radius: constants.$border-radius;
+  background-color: constants.$button-color;
+  color: constants.$button-text-color;
+  border: none;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    background-color: constants.$button-hover-color;
+  }
+
+  &:active {
+    -webkit-box-shadow: 0px 0px 1px 2px constants.$main-darker-color;
+  }
+
+  &:focus {
+    -webkit-box-shadow: 0px 0px 1px 2px constants.$main-darker-color;
+  }
+
+  &:focus-visible {
+    -webkit-box-shadow: 0px 0px 1px 2px constants.$main-darker-color;
+  }
+
+}
