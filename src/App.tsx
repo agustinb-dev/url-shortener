@@ -7,7 +7,9 @@ const router = createBrowserRouter(routes)
 function App() {
 
   return (
-    <div className={styles.main}><RouterProvider router={router} /></div>
+    <div className={styles.main}>
+      <RouterProvider router={router} />
+    </div>
   )
 }
 

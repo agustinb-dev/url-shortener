@@ -1,6 +1,18 @@
-.home_page {
+@use "../../../styles/constants.scss";
+@use "../../../styles/functions.scss";
+
+.home-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    flex-direction: column;
+    background-color: constants.$background-color;
+
+    .home-page-container {
+        display: flex;
+        width: 60%;
+        flex-direction: column;
+    }
 }
+

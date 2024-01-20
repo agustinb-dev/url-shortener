@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { ShortUrl } from "../../../../core/url/domain/ShortUrl.ts";
 
 export function useHomePageHooks() {
-  const [shortUrl, setShortUrl] = useState<string>();
+  const [shortUrl, setShortUrl] = useState<ShortUrl>();
 
   const { createUrl, getOneUrlByUrl, getOneUrl } = useUrl();
 
@@ -18,11 +18,21 @@ export function useHomePageHooks() {
     }
   }
 
+  const getShortUrl = async (url: string) => {
+    const response: ShortUrl | undefined = await getOneUrlByUrl(url as string);
+    const resolvedShortUrl= response?.data
+    setShortUrl(resolvedShortUrl);
+    // const userShortUrl = resolvedShortUrl && import.meta.env.VITE_DOMAIN_URL+resolvedShortUrl.shortUrlKey
+    // setShortUrl(userShortUrl);
+  }
+
+
   return {
     shortUrl,
     setShortUrl,
     createUrl,
     getOneUrlByUrl,
-    redirect
+    redirect,
+    getShortUrl,
   }
 }

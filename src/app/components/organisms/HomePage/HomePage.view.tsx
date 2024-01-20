@@ -1,26 +1,31 @@
 import { UrlForm } from "../../forms/UrlForm/UrlForm.tsx";
 import { useHomePageHooks } from "./HomePage.hook.tsx";
 import styles from "./HomePage.module.scss";
+import { ShortUrlBox } from "../../molecules";
 
 export function HomePageView() {
   const {
     shortUrl,
     setShortUrl,
-    getOneUrlByUrl,
     createUrl,
-    redirect
+    redirect,
+    getShortUrl
   } = useHomePageHooks();
 
   redirect()
 
   return (
-    <div className={styles.home_page}>
-      <UrlForm
-        shortUrl={shortUrl}
+    <div className={styles['home-page']}>
+      <div className={styles['home-page-container']}>
+        <UrlForm
         setShortUrl={setShortUrl}
-        getOneUrlByUrl={getOneUrlByUrl}
+        getShortUrl={getShortUrl}
         createUrl={createUrl}
-      />
+        />
+        <ShortUrlBox
+          shortUrl={shortUrl}
+        />
+      </div>
     </div>
   )
 }

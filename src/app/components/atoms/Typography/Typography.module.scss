@@ -1,0 +1,37 @@
+@use '../../../styles/mixins.scss';
+
+%font-weight-variants {
+  &.weight-bold {
+    font-weight: bold;
+  }
+  &.weight-light {
+    font-weight: 300;
+  }
+  &.weight-thin {
+    font-weight: 100;
+  }
+  &.weight-medium {
+    font-weight: 500;
+  }
+  &.weight-black {
+    font-weight: 900;
+  }
+  &.weight-normal {
+    font-weight: normal;
+  }
+}
+
+.typography {
+  margin: 0;
+
+  &.variant-normal {
+    @include mixins.font-size-variant(1);
+    @extend %font-weight-variants;
+  }
+
+  &.variant-title {
+    @include mixins.font-size-variant(1.25);
+    @extend %font-weight-variants;
+  }
+
+}

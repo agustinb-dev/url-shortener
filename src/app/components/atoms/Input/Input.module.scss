@@ -7,10 +7,10 @@
     outline: none;
 
     &:focus {
-      -webkit-box-shadow: inset 0px 0px 1px 2px constants.$main-color;
+      -webkit-box-shadow: inset 0 0 1px 2px constants.$main-color;
     }
 
     &:focus-visible {
-      -webkit-box-shadow: inset 0px 0px 1px 2px constants.$main-color;
+      -webkit-box-shadow: inset 0 0 1px 2px constants.$main-color;
     }
 }

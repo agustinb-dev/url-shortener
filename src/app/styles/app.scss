@@ -1,0 +1,61 @@
+@use './constants.scss';
+
+@font-face {
+  font-family: 'LilGrotesk';
+  src: local('LilGrotesk'),
+  url('../fonts/LilGrotesk/LilGrotesk-Regular.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LilGrotesk';
+  src: local('LilGrotesk'),
+  url('../fonts/LilGrotesk/LilGrotesk-Medium.woff2') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LilGrotesk';
+  src: local('LilGrotesk'),
+  url('../fonts/LilGrotesk/LilGrotesk-Bold.woff2') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LilGrotesk';
+  src: local('LilGrotesk'),
+  url('../fonts/LilGrotesk/LilGrotesk-Black.woff2') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LilGrotesk';
+  src: local('LilGrotesk'),
+  url('../fonts/LilGrotesk/LilGrotesk-Light.woff2') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LilGrotesk';
+  src: local('LilGrotesk'),
+  url('../fonts/LilGrotesk/LilGrotesk-Thin.woff2') format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+html,
+body {
+  min-width: 400px;
+  font-family: LilGrotesk, sans-serif;
+  font-weight: normal;
+  color: constants.$text-dark-color;
+}
+
+* {
+  box-sizing: border-box;
+}
