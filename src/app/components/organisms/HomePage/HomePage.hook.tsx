@@ -13,7 +13,7 @@ export function useHomePageHooks() {
     if (shortUrlKey !== undefined) {
       getOneUrl(shortUrlKey).then((response: ShortUrl) => {
         const resolvedShortUrl: ShortUrl | undefined = response.data
-        window.location.href = resolvedShortUrl?.url ?? import.meta.env.VITE_DOMAIN_URL;
+        window.location.href = resolvedShortUrl?.url ?? window.location.origin;
       })
     }
   }

@@ -10,5 +10,5 @@ export const isValidUrl = (url: string) => {
 }
 
 export const createShortUrlLink = (shortUrl: ShortUrl): string => {
-  return import.meta.env.VITE_DOMAIN_URL+shortUrl.shortUrlKey
+  return window.location.origin+'/'+shortUrl.shortUrlKey
 }
