@@ -1,6 +1,8 @@
 @use "../../../styles/constants.scss";
 @use "../../../styles/functions.scss";
 
+$md-breakpoint: map-get(constants.$grid-breakpoints, md);
+
 .url-form-container {
   background-color: constants.$secondary-color;
   padding: functions.size(5);
@@ -8,15 +10,23 @@
   display: flex;
   justify-content: center;
   position: relative;
-  min-width: 680px;
+  //min-width: 680px;
+  container-name: url-form-container;
+  container-type: inline-size;
 
   .url-form {
     display: flex;
     column-gap: functions.size(1.5);
     width: 100%;
+    @container home-page (max-width: #{$md-breakpoint}) {
+      flex-direction: column;
+    }
 
     .url-form-button {
       padding: functions.size(1.8) functions.size(2.5);
+      @container home-page (max-width: #{$md-breakpoint}) {
+        margin-top: functions.size(2);
+      }
     }
 
     .url-form-input {
