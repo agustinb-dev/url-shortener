@@ -3,7 +3,7 @@ import { UseCase } from "../../../shared/application/useCase.ts";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
-export class UrlCreate implements UseCase<string, unknown> {
+export class UrlCreate implements UseCase<string, void> {
   constructor(
     @inject("UrlRepository") private urlRepository: UrlRepositoryTs.UrlRepository
   ) {}
