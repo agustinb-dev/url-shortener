@@ -1,9 +1,9 @@
 {
   "rewrites": [
-    { "source": "/:path*", "destination": "/index.html" }
+    { "source": "/:id", "destination": "/" }
   ],
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
+    { "src": "/.*", "dest": "/" }
   ]
 }
