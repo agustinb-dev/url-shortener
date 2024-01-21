@@ -1,0 +1,24 @@
+$main-color: #2acfd0;
+$main-darker-color: #0a3636;
+$button-color: $main-color;
+$button-hover-color: #9ce2e2;
+$button-text-color: #fff;
+$text-color: #fff;
+$text-dark-color: #111016;
+$text-error-color: #e85d62;
+$background-color: #f0f1f6;
+$secondary-background-color: #ffffff;
+$secondary-color: #4a406a;
+$size-unit: 8px;
+$border-radius: 5px;
+
+// breakpoints
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px,
+);

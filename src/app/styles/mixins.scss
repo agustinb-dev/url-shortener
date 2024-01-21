@@ -1,0 +1,13 @@
+@mixin font-size-variant($coefficient) {
+    &.small {
+        font-size: #{$coefficient * 0.8}rem;
+    }
+
+    &.normal {
+        font-size: #{$coefficient}rem;
+    }
+
+    &.large {
+        font-size: #{$coefficient * 1.15}rem;
+    }
+}

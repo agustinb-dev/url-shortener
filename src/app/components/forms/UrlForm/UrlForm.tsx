@@ -1,58 +1,57 @@
-import { FormEvent, useState } from "react";
-import { useUrl } from "../../../../core/url/application/adapter/useUrl.hook.ts";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import styles from "./UrlForm.module.scss";
+import { Button, Input, Typography } from "../../atoms";
+import { isValidUrl } from "../../../utils/urlUtils.ts";
 import { ShortUrl } from "../../../../core/url/domain/ShortUrl.ts";
-import { useParams } from "react-router-dom";
 
-export const UrlForm = () => {
+interface UrlFormProperties {
+  setShortUrl: Dispatch<SetStateAction<ShortUrl | undefined>>,
+  getShortUrl: (url: string) => Promise<void>,
+  createUrl: (url: string) => Promise<void>,
+}
 
-  // TODO: separate into smaller components and use hooks for logic.
+export const UrlForm = (properties: UrlFormProperties) => {
 
-    const [shortUrl, setShortUrl] = useState<string>();
-
-    const { createUrl, getOneUrlByUrl, getOneUrl } = useUrl();
-
-    const { shortUrlKey } = useParams()
+  const [invalidUrl, setInvalidUrl] = useState(false);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      setShortUrl('');
+      properties.setShortUrl(undefined);
       const formData = new FormData(event.currentTarget);
       const url = formData.get('url');
-      url && await createUrl(url as string);
-      if (url) {
-        const response: ShortUrl | undefined = await getOneUrlByUrl(url as string);
-        const resolvedShortUrl= response?.data
-        const userShortUrl = resolvedShortUrl && import.meta.env.VITE_DOMAIN_URL+resolvedShortUrl.shortUrlKey
-        setShortUrl(userShortUrl);
-      }
+      event.currentTarget.reset();
+      if (!url || !isValidUrl(url as string)) return setInvalidUrl(true);
+      setInvalidUrl(false);
+      await properties.createUrl(url as string);
+      await properties.getShortUrl(url as string);
       return
-    }
-
-    const redirect = () => {
-      if (shortUrlKey !== undefined) {
-        getOneUrl(shortUrlKey).then((response: ShortUrl) => {
-          const resolvedShortUrl: ShortUrl | undefined = response.data
-          window.location.href = resolvedShortUrl?.url ?? import.meta.env.VITE_DOMAIN_URL;
-        })
-      }
-    }
-
-    redirect();
+    };
 
     return (
-        <>
+        <div className={styles['url-form-container']}>
             <form
                 onSubmit={handleSubmit}
+                className={styles['url-form']}
             >
-                <label htmlFor="url">
-                    URL:
-                    <input type="text" name="url" id="url"/>
-                </label>
-                <button type="submit" value="short it">short it</button>
+                <Input
+                  type="text"
+                  name="url"
+                  id="url"
+                  className={invalidUrl ? styles['url-form-input-error'] : styles['url-form-input']}
+                  placeholder={'Shorten a link here...'}
+                />
+                <Button type="submit" value="Shorten It!" className={styles['url-form-button']}>
+                  <Typography weight={'bold'} size={'large'}>
+                    Shorten It!
+                  </Typography>
+                </Button>
             </form>
             <div>
-              {shortUrl && <h3><a href={shortUrl}>{shortUrl}</a></h3>}
+              {invalidUrl &&
+                <Typography className={styles['error-message']}>
+                  Please add a link
+                </Typography>}
             </div>
-        </>
+        </div>
     );
 };
