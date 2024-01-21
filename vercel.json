@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/:id", "destination": "/" }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/" }
+  ]
+}
