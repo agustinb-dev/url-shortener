@@ -1,47 +1,57 @@
-import { Dispatch, FormEvent, SetStateAction } from "react";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import styles from "./UrlForm.module.scss";
+import { Button, Input, Typography } from "../../atoms";
+import { isValidUrl } from "../../../utils/urlUtils.ts";
 import { ShortUrl } from "../../../../core/url/domain/ShortUrl.ts";
 
-
 interface UrlFormProperties {
-  shortUrl: string | undefined,
-  setShortUrl: Dispatch<SetStateAction<string | undefined>>,
-  getOneUrlByUrl: (url: string) => Promise<ShortUrl | undefined>,
+  setShortUrl: Dispatch<SetStateAction<ShortUrl | undefined>>,
+  getShortUrl: (url: string) => Promise<void>,
   createUrl: (url: string) => Promise<void>,
 }
 
 export const UrlForm = (properties: UrlFormProperties) => {
 
-  // TODO: separate into smaller components and use hooks for logic.
+  const [invalidUrl, setInvalidUrl] = useState(false);
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      properties.setShortUrl('');
+      properties.setShortUrl(undefined);
       const formData = new FormData(event.currentTarget);
       const url = formData.get('url');
-      url && await properties.createUrl(url as string);
-      if (url) {
-        const response: ShortUrl | undefined = await properties.getOneUrlByUrl(url as string);
-        const resolvedShortUrl= response?.data
-        const userShortUrl = resolvedShortUrl && import.meta.env.VITE_DOMAIN_URL+resolvedShortUrl.shortUrlKey
-        properties.setShortUrl(userShortUrl);
-      }
+      event.currentTarget.reset();
+      if (!url || !isValidUrl(url as string)) return setInvalidUrl(true);
+      setInvalidUrl(false);
+      await properties.createUrl(url as string);
+      await properties.getShortUrl(url as string);
       return
     };
 
     return (
-        <>
+        <div className={styles['url-form-container']}>
             <form
                 onSubmit={handleSubmit}
+                className={styles['url-form']}
             >
-                <label htmlFor="url">
-                    URL:
-                </label>
-                    <input type="text" name="url" id="url"/>
-                <button type="submit" value="short it">short it</button>
+                <Input
+                  type="text"
+                  name="url"
+                  id="url"
+                  className={invalidUrl ? styles['url-form-input-error'] : styles['url-form-input']}
+                  placeholder={'Shorten a link here...'}
+                />
+                <Button type="submit" value="Shorten It!" className={styles['url-form-button']}>
+                  <Typography weight={'bold'} size={'large'}>
+                    Shorten It!
+                  </Typography>
+                </Button>
             </form>
             <div>
-              {properties.shortUrl && <h3><a href={properties.shortUrl}>{properties.shortUrl}</a></h3>}
+              {invalidUrl &&
+                <Typography className={styles['error-message']}>
+                  Please add a link
+                </Typography>}
             </div>
-        </>
+        </div>
     );
 };

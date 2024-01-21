@@ -1,0 +1,9 @@
+.main {
+    display: flex;
+    height: 100vh;
+
+  .page {
+    flex: 1 1 auto;
+    overflow: auto visible;
+  }
+}

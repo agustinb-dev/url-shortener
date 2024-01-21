@@ -1,0 +1,57 @@
+@use "../../../styles/constants.scss";
+@use "../../../styles/functions.scss";
+
+.short-url-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: constants.$secondary-background-color;
+    margin-top: functions.size(2);
+    border-radius: constants.$border-radius;
+    padding: functions.size(2) functions.size(2);
+    min-width: 680px;
+
+    %copy-link-button {
+        margin-left: functions.size(2);
+        padding: functions.size(0.8) functions.size(3);
+        min-width: 5.8rem;
+        transition: background-color 0.3s ease-in-out;
+
+        &:active {
+            -webkit-box-shadow: none;
+        }
+
+        &:focus {
+            -webkit-box-shadow: none;
+        }
+    }
+
+    .normal-url {
+        min-width: 0;
+    }
+
+    .normal-url > p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .short-url-link-container {
+        color: constants.$main-color;
+        display: flex;
+        align-items: center;
+        margin-left: functions.size(2);
+
+        & a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .copy-button {
+            @extend %copy-link-button;
+        }
+        .copied-button {
+            @extend %copy-link-button;
+            background-color: constants.$secondary-color;
+        }
+    }
+}
