@@ -18,7 +18,7 @@ $md-breakpoint: map-get(constants.$grid-breakpoints, md);
         width: 60%;
         flex-direction: column;
         @container home-page (max-width: #{$md-breakpoint}) {
-            width: 100%;
+            width: 90%;
         }
     }
 }
