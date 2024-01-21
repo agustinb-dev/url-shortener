@@ -1,18 +1,25 @@
 @use "../../../styles/constants.scss";
 @use "../../../styles/functions.scss";
 
+$md-breakpoint: map-get(constants.$grid-breakpoints, md);
+
 .home-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh;
     flex-direction: column;
     background-color: constants.$background-color;
+    container-name: home-page;
+    container-type: size;
 
     .home-page-container {
         display: flex;
         width: 60%;
         flex-direction: column;
+        @container home-page (max-width: #{$md-breakpoint}) {
+            width: 90%;
+        }
     }
 }
 

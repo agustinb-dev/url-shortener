@@ -11,3 +11,14 @@ $secondary-background-color: #ffffff;
 $secondary-color: #4a406a;
 $size-unit: 8px;
 $border-radius: 5px;
+
+// breakpoints
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px,
+);

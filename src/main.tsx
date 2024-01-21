@@ -6,7 +6,6 @@ import App from "./App.tsx";
 import './app/styles/app.scss'
 
 // fonts
-import './index.css'
 import './app/fonts/LilGrotesk/LilGrotesk-Regular.woff2'
 import './app/fonts/LilGrotesk/LilGrotesk-Thin.woff2'
 import './app/fonts/LilGrotesk/LilGrotesk-Medium.woff2'
