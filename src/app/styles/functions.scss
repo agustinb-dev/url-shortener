@@ -1,5 +1,5 @@
 @use "constants.scss";
 
-@function size($n) {
+@function spacing($n) {
     @return constants.$size-unit * $n;
 }
