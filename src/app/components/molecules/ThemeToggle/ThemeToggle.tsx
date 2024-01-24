@@ -36,8 +36,6 @@ export function ThemeToggle() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  console.log(theme);
-
   return (
     <><Checkbox
       name="theme-toggle"
