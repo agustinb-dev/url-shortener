@@ -4,8 +4,8 @@
 $md-breakpoint: map-get(constants.$grid-breakpoints, md);
 
 .url-form-container {
-  background-color: constants.$secondary-color;
-  padding: functions.size(5);
+  background-color: var(--secondary-color);
+  padding: functions.spacing(5);
   border-radius: constants.$border-radius+3;
   display: flex;
   justify-content: center;
@@ -16,45 +16,46 @@ $md-breakpoint: map-get(constants.$grid-breakpoints, md);
 
   .url-form {
     display: flex;
-    column-gap: functions.size(1.5);
+    column-gap: functions.spacing(1.5);
     width: 100%;
     @container home-page (max-width: #{$md-breakpoint}) {
       flex-direction: column;
     }
 
     .url-form-button {
-      padding: functions.size(1.8) functions.size(2.5);
+      padding: functions.spacing(1.8) functions.spacing(2.5);
       @container home-page (max-width: #{$md-breakpoint}) {
-        margin-top: functions.size(2);
+        margin-top: functions.spacing(2);
       }
     }
 
     .url-form-input {
-      padding: functions.size(1.5);
+      padding: functions.spacing(1.5);
       flex-grow: 1;
       font-weight: 500;
 
       &::placeholder {
-        opacity: 0.7;
+        color: var(--text-color);
+        opacity: 0.5;
       }
     }
 
     .url-form-input-error {
-      padding: functions.size(1.5);
+      padding: functions.spacing(1.5);
       flex-grow: 1;
-      -webkit-box-shadow: inset 0 0 1px 2px constants.$text-error-color;
+      -webkit-box-shadow: inset 0 0 1px 2px var(--text-error-color);
       font-weight: 500;
 
       &::placeholder {
-        color: constants.$text-error-color;
+        color: var(--text-error-color);
         font-weight: 500;
-        opacity: 0.5;
+        opacity: 0.6;
       }
     }
   }
 
   .error-message {
-    color: constants.$text-error-color;
+    color: var(--text-error-color);
     position: absolute;
     left: 2.5rem;
     bottom: 1rem;

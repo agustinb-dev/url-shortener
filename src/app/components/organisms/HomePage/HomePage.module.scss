@@ -9,7 +9,7 @@ $md-breakpoint: map-get(constants.$grid-breakpoints, md);
     align-items: center;
     height: 100vh;
     flex-direction: column;
-    background-color: constants.$background-color;
+    background-color: var(--background-color);
     container-name: home-page;
     container-type: size;
 
