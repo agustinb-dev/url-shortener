@@ -8,16 +8,16 @@ $sm-breakpoint: map-get(constants.$grid-breakpoints, sm);
     align-items: center;
     justify-content: space-between;
     background-color: var(--secondary-background-color);
-    margin-top: functions.size(2);
+    margin-top: functions.spacing(2);
     border-radius: constants.$border-radius;
-    padding: functions.size(2) functions.size(2);
+    padding: functions.spacing(2) functions.spacing(2);
     @container home-page (max-width: #{$sm-breakpoint}) {
         justify-content: center;
     }
 
     %copy-link-button {
-        margin-left: functions.size(2);
-        padding: functions.size(0.8) functions.size(3);
+        margin-left: functions.spacing(2);
+        padding: functions.spacing(0.8) functions.spacing(3);
         min-width: 5.8rem;
         transition: background-color 0.3s ease-in-out;
 
@@ -47,7 +47,7 @@ $sm-breakpoint: map-get(constants.$grid-breakpoints, sm);
         color: var(--main-color);
         display: flex;
         align-items: center;
-        margin-left: functions.size(2);
+        margin-left: functions.spacing(2);
 
         & a {
             text-decoration: none;

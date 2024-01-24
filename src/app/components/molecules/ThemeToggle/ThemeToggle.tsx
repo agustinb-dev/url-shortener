@@ -1,5 +1,9 @@
 import { Checkbox } from "../../atoms";
 import { useEffect, useLayoutEffect, useState } from "react";
+import styles from "./ThemeToggle.module.scss";
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+
 export function ThemeToggle() {
   // system-wide and local user theme preference check
   const preferColorSchemeQuery = "(prefers-color-scheme: dark)";
@@ -10,11 +14,20 @@ export function ThemeToggle() {
 
   // handlers
   const handleToggleTheme = () => {
-    // localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
     setTheme(theme === 'light' ? 'dark' : 'light');
   }
 
   // events
+  useEffect(() => {
+    const mediaQuery = matchMedia(preferColorSchemeQuery);
+    const handleColorSchemeChange = () =>
+      setTheme(mediaQuery.matches ? "dark" : "light");
+      mediaQuery.addEventListener("change", handleColorSchemeChange);
+
+      return () =>
+        mediaQuery.removeEventListener("change", handleColorSchemeChange);
+  }, []);
+
   useEffect(() => {
     localStorage.setItem('theme', theme);
   }, [theme]);
@@ -26,11 +39,17 @@ export function ThemeToggle() {
   console.log(theme);
 
   return (
-    <Checkbox
+    <><Checkbox
       name="theme-toggle"
       id="theme-toggle"
-      checked={theme === 'dark'}
+      className={styles['theme-toggle-checkbox']}
+      checked={theme === "dark"}
       onChange={handleToggleTheme}
     />
+      <label htmlFor="theme-toggle" className={styles['theme-toggle-label']}>
+        <LightModeIcon className={styles.sun} />
+        <DarkModeIcon className={styles.moon} />
+      </label>
+    </>
   )
 }

@@ -1,0 +1,54 @@
+@use "../../../styles/constants.scss";
+@use "../../../styles/functions.scss";
+
+.theme-toggle-checkbox {
+    display: none;
+}
+
+.theme-toggle-label {
+    display: inline-block;
+    position: relative;
+    background-color: constants.$light-gray;
+    border-radius: 20px;
+    width: 3rem;
+    height: 1.5rem;
+    cursor: pointer;
+    margin-bottom: functions.spacing(1.5);
+}
+
+.theme-toggle-label::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label {
+    background-color: var(--main-color);
+}
+
+.theme-toggle-checkbox:checked + label::before {
+    transform: translateX(1.5rem);
+}
+
+.theme-toggle-label svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &.sun {
+        left: -1.2rem;
+        transition: 0.1s ease-in-out;
+    }
+
+    &.moon {
+        left: 4rem;
+        transition: 0.1s ease-in-out;
+    }
+}
