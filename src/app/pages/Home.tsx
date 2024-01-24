@@ -3,6 +3,8 @@ import styles from "../templates/main.module.scss";
 
 export function Home() {
   return (
-    <div className={styles.page}><HomePageView /></div>
+    <div className={styles.page}>
+      <HomePageView />
+    </div>
   )
 }

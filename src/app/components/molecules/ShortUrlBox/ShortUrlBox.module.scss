@@ -7,7 +7,7 @@ $sm-breakpoint: map-get(constants.$grid-breakpoints, sm);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: constants.$secondary-background-color;
+    background-color: var(--secondary-background-color);
     margin-top: functions.size(2);
     border-radius: constants.$border-radius;
     padding: functions.size(2) functions.size(2);
@@ -44,7 +44,7 @@ $sm-breakpoint: map-get(constants.$grid-breakpoints, sm);
     }
 
     .short-url-link-container {
-        color: constants.$main-color;
+        color: var(--main-color);
         display: flex;
         align-items: center;
         margin-left: functions.size(2);
@@ -58,7 +58,7 @@ $sm-breakpoint: map-get(constants.$grid-breakpoints, sm);
         }
         .copied-button {
             @extend %copy-link-button;
-            background-color: constants.$secondary-color;
+            background-color: var(--secondary-color);
         }
     }
 }

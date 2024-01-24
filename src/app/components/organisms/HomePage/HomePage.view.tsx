@@ -1,7 +1,7 @@
 import { UrlForm } from "../../forms/UrlForm/UrlForm.tsx";
 import { useHomePageHooks } from "./HomePage.hook.tsx";
 import styles from "./HomePage.module.scss";
-import { ShortUrlBox } from "../../molecules";
+import { ShortUrlBox, ThemeToggle } from "../../molecules";
 
 export function HomePageView() {
   const {
@@ -16,6 +16,7 @@ export function HomePageView() {
 
   return (
     <div className={styles['home-page']}>
+      <ThemeToggle />
       <div className={styles['home-page-container']}>
         <UrlForm
         setShortUrl={setShortUrl}

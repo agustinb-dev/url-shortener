@@ -1,14 +1,22 @@
-$main-color: #2acfd0;
-$main-darker-color: #0a3636;
-$button-color: $main-color;
-$button-hover-color: #9ce2e2;
+$main-light-color: #2acfd0;
+$main-dark-color: #2acfd0;
+$main-light-darker-color: #0a3636;
+$main-dark-darker-color: #0a3636;
+$secondary-light-color: #4a406a;
+$secondary-dark-color: #4a406a;
+$button-light-color: $main-light-color;
+$button-dark-color: $main-light-color;
+$button-hover-light-color: #9ce2e2;
+$button-hover-dark-color: #9ce2e2;
 $button-text-color: #fff;
-$text-color: #fff;
+$text-light-color: #fff;
 $text-dark-color: #111016;
-$text-error-color: #e85d62;
-$background-color: #f0f1f6;
-$secondary-background-color: #ffffff;
-$secondary-color: #4a406a;
+$text-error-light-color: #e85d62;
+$text-error-dark-color: #e85d62;
+$background-light-color: #f0f1f6;
+$background-dark-color: #0f0f0f;
+$secondary-background-light-color: #ffffff;
+$secondary-background-dark-color: #272727;
 $size-unit: 8px;
 $border-radius: 5px;
 
@@ -22,3 +30,31 @@ $grid-breakpoints: (
         xl: 1200px,
         xxl: 1400px,
 );
+
+// global variables
+
+[data-theme="dark"] {
+  --main-color: #{$main-dark-color};
+  --main-darker-color: #{$main-dark-darker-color};
+  --secondary-color: #{$secondary-dark-color};
+  --button-color: #{$main-dark-color};
+  --button-hover-color: #{$button-hover-dark-color};
+  --button-text-color: #{$text-light-color};
+  --text-color: #{$text-light-color};
+  --text-error-color: #{$text-error-dark-color};
+  --background-color: #{$background-dark-color};
+  --secondary-background-color: #{$secondary-background-dark-color};
+}
+
+[data-theme='light'] {
+  --main-color: #{$main-light-color};
+  --main-darker-color: #{$main-light-darker-color};
+  --secondary-color: #{$secondary-light-color};
+  --button-color: #{$main-light-color};
+  --button-hover-color: #{$button-hover-light-color};
+  --button-text-color: #{$text-light-color};
+  --text-color: #{$text-dark-color};
+  --text-error-color: #{$text-error-light-color};
+  --background-color: #{$background-light-color};
+  --secondary-background-color: #{$secondary-background-light-color};
+}
